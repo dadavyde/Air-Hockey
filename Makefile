@@ -21,10 +21,10 @@ HEADERS = includes/Game.hpp\
           includes/Object.hpp\
           includes/math_functions.hpp
 
-INCLUDES_SDL = -I ~/Library/Frameworks/SDL2.framework/Versions/A/Headers/ \
-				-I ~/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers/\
-				-I ~/Library/Frameworks/SDL2_image.framework/Versions/A/Headers/\
-				-I ~/Library/Frameworks/SDL2_ttf.framework/Versions/A/Headers/
+INCLUDES_SDL = -I frameworks/SDL2.framework/Versions/A/Headers/ \
+				-I frameworks/SDL2_mixer.framework/Versions/A/Headers/\
+				-I frameworks/SDL2_image.framework/Versions/A/Headers/\
+				-I frameworks/SDL2_ttf.framework/Versions/A/Headers/
 
 INCLUDES = -I includes/
 
