@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <unistd.h>
+
 Game::Game() : window_(), screen_(), event_(), music_(), del_flag_(NoDel), game_status_(OFF), player_turn_(true)
 {
 	mouse_ = (pos){0, 0};
@@ -52,6 +54,7 @@ void  Game::set_textures()
 			throw SdlErr(name);
 		name.insert(0, "Unable to load image ");
 		name += ", ";
+		SDL_SetColorKey(tmp, true, 0xFFFFFF);
 		textures_.push_back(SDL_ConvertSurfaceFormat(tmp, SDL_PIXELFORMAT_ARGB8888, 0));
 		SDL_FreeSurface(tmp);
 	}
