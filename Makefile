@@ -10,7 +10,8 @@ SOURCES = source/main.cpp\
           source/exceptions.cpp\
           source/Puck.cpp\
           source/Object.cpp\
-          source/math_functions.cpp
+          source/math_functions.cpp\
+          source/Music.cpp
 
 HEADERS = includes/Game.hpp\
           includes/Player.hpp\
@@ -19,7 +20,8 @@ HEADERS = includes/Game.hpp\
           includes/headers.hpp\
           includes/Puck.hpp\
           includes/Object.hpp\
-          includes/math_functions.hpp
+          includes/math_functions.hpp\
+          includes/Music.hpp
 
 INCLUDES_SDL = -I frameworks/SDL2.framework/Versions/A/Headers/ \
 				-I frameworks/SDL2_mixer.framework/Versions/A/Headers/\
@@ -46,7 +48,6 @@ $(NAME): $(OBJDIR) $(OBJ) $(HEADERS) $(SOURCES)
 
 $(OBJDIR)%.o: source/%.cpp  $(HEADERS)
 	@$(CLANG) $(CXX_FLAGS) $(INCLUDES_SDL) -c $< -o  $@ $(INCLUDES)
-	@printf "$(C_MAGENTA)AirHockey:   $(C_NONE) %-50s$(C_GREEN)[done]$(C_NONE)\n" $@
 
 $(OBJDIR): $(HEADERS)
 	@mkdir -p $(OBJDIR)

@@ -12,17 +12,17 @@
 class Music
 {
 public:
-	Music();
-	~Music();
-	Music &operator=(const Music &other);
-	Music(const Music &other);
+    Music();
+    ~Music();
+    Music &operator=(const Music &other);
+    Music(const Music &other);
 
-	void	play_music();
-	void	play_sound(eSound sound_name);
+    void	play_music();
+    void	play_sound(eSound sound_name);
 
 private:
-	Mix_Music					*music_;
-	std::vector<Mix_Chunk*>		sound_;
+    Mix_Music					*music_;
+    std::vector<Mix_Chunk*>		sound_;
 };
 
 

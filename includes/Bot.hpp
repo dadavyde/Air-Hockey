@@ -8,9 +8,9 @@
 class Bot : public Object
 {
 public:
-	Bot();
-	void 	find_origin() override;
-	void 	find_direction(Object *player, Object *bot) override ;
+    Bot();
+    void 	find_origin() override;
+    void 	find_direction(Object *player, Object *bot) override ;
 
 };
 

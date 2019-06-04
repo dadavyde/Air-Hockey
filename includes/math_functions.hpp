@@ -3,7 +3,7 @@
 
 #include "Object.hpp"
 
-float find_distance(Object *obj1, Object *obj2);
+float   find_distance(Object *obj1, Object *obj2);
 float   squared(float a);
 
 #endif
