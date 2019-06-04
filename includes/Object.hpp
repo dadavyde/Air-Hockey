@@ -1,7 +1,8 @@
 #ifndef AIRHOCKEY_OBJECT_HPP
 #define AIRHOCKEY_OBJECT_HPP
 
-#include "headers.hpp"
+#include "Music.hpp"
+
 
 class Object
 {
@@ -24,6 +25,7 @@ public:
 	void			set_direction(float x, float y);
 	vector			get_direction();
 	void  			set_win_edge_pos(pos window_edge);
+	void			set_music(Music &music);
 
 protected:
 	SDL_Rect  	edge_pos_;
@@ -32,6 +34,7 @@ protected:
 	pos_f  		old_origin_f_;
 	vector		direct;//вектор направления передвижения в секунду
 	pos			window_edge_;
+	Music 		music_;
 };
 
 

@@ -1,13 +1,12 @@
 #include "Object.hpp"
 
-Object::Object()
+Object::Object() : edge_pos_(), origin_(), origin_f_(), old_origin_f_(), direct(), window_edge_(), music_()
 {
-	edge_pos_ = (SDL_Rect){0, 0, 0, 0};
-	origin_ = (pos){0, 0};
-	origin_f_ = (pos_f){0, 0};
-	origin_f_ = (pos_f){0, 0};
-	direct = (vector){0, 0};
-	window_edge_ = (pos){0, 0};
+//	edge_pos_ = (SDL_Rect){0, 0, 0, 0};
+//	origin_ = (pos){0, 0};
+//	origin_f_ = (pos_f){0, 0};
+//	direct = (vector){0, 0};
+//	window_edge_ = (pos){0, 0};
 }
 
 Object& Object::operator=(const Object &other)
@@ -16,6 +15,11 @@ Object& Object::operator=(const Object &other)
 	{
 		this->edge_pos_ = other.edge_pos_;
 		this->origin_ = other.origin_;
+		this->origin_f_ = other.origin_f_;
+		this->old_origin_f_ = other.old_origin_f_;
+		this->direct = other.direct;
+		this->window_edge_ = other.window_edge_;
+		this->music_ = other.music_;
 	}
 	return *this;
 }
@@ -82,4 +86,9 @@ vector Object::get_direction()
 void Object::set_win_edge_pos(pos window_edge)
 {
 	window_edge_ = window_edge;
+}
+
+void Object::set_music(Music &music)
+{
+	music_ = music;
 }

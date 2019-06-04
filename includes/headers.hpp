@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   headers.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dadavyde <dadavyde@student.unit.ua>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/01 20:41:00 by dadavyde          #+#    #+#             */
-/*   Updated: 2019/06/01 20:41:00 by dadavyde         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef HEADERS_H
 # define HEADERS_H
 
@@ -30,13 +18,12 @@
 #define TABLE_HEIGHT 1020
 #define START_PATH "bmp/table_rules_small_new_6.bmp"
 #define PAUSE_PATH "bmp/table_pause_small.bmp"
-#define WON_PATH "bmp/fon_small_won.bmp"
-#define LOSE_PATH "bmp/fon_small_lose.bmp"
+#define WON_PATH "bmp/fon_small_won-2.bmp"
+#define LOSE_PATH "bmp/fon_small_lose-2.bmp"
 #define FON_PATH "bmp/fon_small.bmp"
 #define PUCK_PATH "bmp/shayba_small.bmp"
-#define PUSHER_PATH "bmp/clushka_small.bmp"
-#define KICK_SOUND_PATH "sounds/Kick.wav"
-#define MUSIC_PATH "bmp/sounds/music1.wav"
+#define PUSHER_PL_PATH "bmp/clushka_red.bmp"
+#define PUSHER_BOT_PATH "bmp/clushka_blue.bmp"
 #define NUM_0_PATH "bmp/0_0.bmp"
 #define NUM_1_PATH "bmp/1_0.bmp"
 #define NUM_2_PATH "bmp/2_0.bmp"
@@ -51,9 +38,10 @@
 #define MAX_SCORE 6
 
 enum eDel {NoDel, TextureDel, AllDel};
-enum eImage {START, PAUSE_PIC, FON, PUCK_PIC, PUSHER, WON_PIC, LOSE_PIC, NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6};
+enum eImage {START, PAUSE_PIC, FON, PUCK_PIC, PUSHER_PL, PUSHER_BOT, WON_PIC, LOSE_PIC, NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6};
 enum eObj {PLAYER, BOT, PUCK};
 enum eGame {OFF, ON, PAUSE, WON, LOSE};
+enum eSound {KICK, GOAL};
 
 struct  score
 {

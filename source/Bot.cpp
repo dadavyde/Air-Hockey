@@ -36,5 +36,4 @@ void  Bot::find_direction(Object *player, Object *puck)
 		origin_f_.y -= 5;
 	direct.x = (origin_f_.x - old_origin_f_.x) * FPS;
 	direct.y = (origin_f_.y - old_origin_f_.y) * FPS;
-
 }

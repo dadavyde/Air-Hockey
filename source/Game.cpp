@@ -1,28 +1,28 @@
 #include "Game.hpp"
 
-#include <unistd.h>
-
 Game::Game() : window_(), screen_(), event_(), music_(), del_flag_(NoDel), game_status_(OFF), player_turn_(true)
 {
 	mouse_ = (pos){0, 0};
 	window_edge_ = (pos){0, 0};
 	score_ = (score){0, (SDL_Rect){150, 180, 0, 0}, 0, (SDL_Rect){1180, 820, 0, 0}};
 	ms = duration_cast< milliseconds >(system_clock::now().time_since_epoch());
+	try {
+		set_textures();
+		//TODO check
+	}
+	catch (SdlErr &e) {
+		throw SdlErr(e);
+	}
 }
 
 Game::~Game()
 {
-	//TODO write
 	if (del_flag_ > NoDel)
 		for (auto & texture : textures_)
 			SDL_FreeSurface(texture);
 	if (del_flag_ == AllDel)
 	{
 		SDL_DestroyWindow(window_);
-		/*if (music_)
-			Mix_FreeMusic(music_);*/
-		//SDL_FreeSurface(screen_);
-		//Mix_Quit();
 		SDL_Quit();
 	}
 }
@@ -74,7 +74,13 @@ void Game::run()
 	SDL_BlitSurface(textures_[START], nullptr, screen_, nullptr);
 	SDL_UpdateWindowSurface(window_);
 	init();
-	handle_events();
+	try
+	{
+		handle_events();
+	}
+	catch (SdlErr &e) {
+		throw (e);
+	}
 }
 
 void Game::init()
@@ -88,9 +94,16 @@ void Game::init()
 		object->set_win_edge_pos(window_edge_);
 	}
 	SDL_GetGlobalMouseState(&mouse_.x, &mouse_.y);
-	objects[PLAYER]->set_sizes(textures_[PUSHER]->h, textures_[PUSHER]->w);
-	objects[BOT]->set_sizes(textures_[PUSHER]->h, textures_[PUSHER]->w);
+	objects[PLAYER]->set_sizes(textures_[PUSHER_PL]->h, textures_[PUSHER_PL]->w);
+	objects[BOT]->set_sizes(textures_[PUSHER_BOT]->h, textures_[PUSHER_BOT]->w);
 	objects[PUCK]->set_sizes(textures_[PUCK_PIC]->h, textures_[PUCK_PIC]->w);
+	try {
+		music_.play_music();
+	}
+	catch (SdlErr &e) {
+		throw (e);
+	}
+	objects[PUCK]->set_music(music_);
 }
 
 void  Game::draw_scene()
@@ -115,10 +128,10 @@ void  Game::draw_scene()
 				player_turn_ = true;
 				score_.bot++;
 			}
-			SDL_Delay(500);
-			player_turn_ ? objects[PUCK]->set_origin_f(1200, 800) : objects[PUCK]->set_origin_f(1200, 700);
+			SDL_Delay(700);
+			player_turn_ ? objects[PUCK]->set_origin_f(1100, 800) : objects[PUCK]->set_origin_f(1400, 600);
+			//TODO сделать чтобы не накладывались
 			objects[PUCK]->set_direction(0, 0);
-
 		}
 		else
 		{
@@ -133,8 +146,8 @@ void  Game::draw_scene()
 		objects[BOT]->find_direction(objects[PLAYER], objects[PUCK]);
 
 		SDL_BlitSurface(textures_[FON], nullptr, screen_, nullptr);
-		SDL_BlitSurface(textures_[PUSHER], nullptr, screen_, objects[PLAYER]->get_edge_pos());
-		SDL_BlitSurface(textures_[PUSHER], nullptr, screen_, objects[BOT]->get_edge_pos());
+		SDL_BlitSurface(textures_[PUSHER_PL], nullptr, screen_, objects[PLAYER]->get_edge_pos());
+		SDL_BlitSurface(textures_[PUSHER_BOT], nullptr, screen_, objects[BOT]->get_edge_pos());
 		SDL_BlitSurface(textures_[PUCK_PIC], nullptr, screen_, objects[PUCK]->get_edge_pos());
 		SDL_BlitSurface(textures_[NUM_0 + score_.bot], nullptr, screen_, &score_.edge_pos_bot);
 		SDL_BlitSurface(textures_[NUM_0 + score_.player], nullptr, screen_, &score_.edge_pos_player);
@@ -151,12 +164,6 @@ void  Game::handle_events()
 	int			running;
 
 	running = true;
-	/*try {
-		play_music();
-	}
-	catch (SdlErr &e) {
-		throw (e);
-	}*/
 	while (running)
 	{
 		(SDL_PollEvent(&event_));
@@ -172,19 +179,6 @@ void  Game::handle_events()
 	}
 }
 
-/*void  Game::play_music()
-{
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-	{
-		throw SdlErr("SDL_mixer could not initialize! SDL_mixer Error: ");
-	}
-	music_ = Mix_LoadMUS(MUSIC_PATH);
-	if (music_ == nullptr)
-	{
-		throw SdlErr("Failed to load beat music! SDL_mixer Error: ");
-	}
-	Mix_PlayMusic(music_, -1);
-}*/
 
 void  Game::key_down(int &running)
 {
