@@ -1,7 +1,7 @@
 CLANG = clang++
 CXX_FLAGS = -c -Wall -Wextra -Werror -std=c++11
 #-O3 -flto=thin -Ofast -march=native -mtune=native
-HOCKEY_FLAGS = -F frameworks/ -framework SDL2 -framework SDL2_mixer
+HOCKEY_FLAGS = -F frameworks/ -framework SDL2 -framework SDL2_mixer -framework SDL2_ttf
 
 SOURCES = source/main.cpp\
           source/Game.cpp\
