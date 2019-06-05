@@ -20,6 +20,7 @@ public:
     float           get_radius();
     void            set_origin_f(float x, float y);
     pos_f           get_origin_f();
+    void            set_old_origin_f(pos_f origin);
     void            set_direction(float x, float y);
     vector          get_direction();
     void            set_win_edge_pos(pos window_edge);

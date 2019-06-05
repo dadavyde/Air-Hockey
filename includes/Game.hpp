@@ -18,10 +18,12 @@ public:
     Game &operator=(const Game &other);
     Game(const Game &other);
 
+    void  set_textures();
     void  run();
     void  init();
-    void  set_textures();
     void  draw_scene();
+    void  set_objects_position();
+    void  put_sufaces();
     void  handle_events();
     void  key_down(int &running);
     void  update_image();
@@ -30,7 +32,7 @@ public:
 
 private:
     SDL_Window                  *window_;
-    std::vector<std::string>    textures_name = {START_PATH, PAUSE_PATH, FON_PATH, PUCK_PATH, PUSHER_PL_PATH, PUSHER_BOT_PATH, WON_PATH, LOSE_PATH,
+    std::vector<std::string>    textures_name = {START_PATH, FON_PATH, PAUSE_PATH, WON_PATH, LOSE_PATH, PUCK_PATH, PUSHER_PL_PATH, PUSHER_BOT_PATH,
                                                  NUM_0_PATH, NUM_1_PATH, NUM_2_PATH, NUM_3_PATH, NUM_4_PATH, NUM_5_PATH, NUM_6_PATH};
     std::vector<SDL_Surface*>   textures_;
     SDL_Surface                 *screen_;
@@ -44,6 +46,7 @@ private:
     score                       score_;
     milliseconds                ms;
     bool                        player_turn_;
+    TTF_Font                    *font;
 };
 
 

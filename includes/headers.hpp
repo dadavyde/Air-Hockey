@@ -4,6 +4,8 @@
 #include "exceptions.hpp"
 #include "SDL.h"
 #include "SDL_mixer.h"
+#include "SDL_ttf.h"
+
 #include <fcntl.h>
 #include <cstdlib>
 #include <cmath>
@@ -16,7 +18,7 @@
 #define WIN_HEIGHT 1001
 #define TABLE_WIDTH 642
 #define TABLE_HEIGHT 955
-#define START_PATH "bmp/table_rules_small_new_6.bmp"
+#define START_PATH "bmp/table_rules_small_new.bmp"
 #define PAUSE_PATH "bmp/table_pause_small.bmp"
 #define WON_PATH "bmp/fon_small_won-2.bmp"
 #define LOSE_PATH "bmp/fon_small_lose-2.bmp"
@@ -31,8 +33,7 @@
 #define NUM_4_PATH "bmp/4_0.bmp"
 #define NUM_5_PATH "bmp/5_0.bmp"
 #define NUM_6_PATH "bmp/6_0.bmp"
-#define PLAYER_SHIFT 20
-#define PLAYER_SHIFT2 53
+#define BOT_SHIFT 7
 #define FPS 60
 #define HALF_GATE 90
 #define MAX_SCORE 5
@@ -41,9 +42,11 @@
 #define TOP_WALL (window_edge_.y + (WIN_HEIGHT - TABLE_HEIGHT) / 2)
 #define BOTTOM_WALL (window_edge_.y + (WIN_HEIGHT + TABLE_HEIGHT) / 2)
 #define HORIZON (window_edge_.y + WIN_HEIGHT / 2)
+#define TTF_FONT "ttf/HECI_CT.ttf"
+#define FONT_SIZE 70
 
 enum eDel {NoDel, TextureDel, AllDel};
-enum eImage {START, PAUSE_PIC, FON, PUCK_PIC, PUSHER_PL, PUSHER_BOT, WON_PIC, LOSE_PIC, NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6};
+enum eImage {START, FON, PAUSE_PIC, WON_PIC, LOSE_PIC, PUCK_PIC, PUSHER_PL, PUSHER_BOT, NUM_0, NUM_1, NUM_2, NUM_3, NUM_4, NUM_5, NUM_6, TEXT};
 enum eObj {PLAYER, BOT, PUCK};
 enum eGame {OFF, ON, PAUSE, WON, LOSE};
 enum eSound {KICK, GOAL};
@@ -54,6 +57,7 @@ struct  score
     SDL_Rect  edge_pos_bot;
     int  player;
     SDL_Rect  edge_pos_player;
+    SDL_Rect  edge_pos_text;
 };
 
 struct  vector

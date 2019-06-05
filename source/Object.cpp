@@ -55,6 +55,11 @@ pos_f  Object::get_origin_f()
     return origin_f_;
 }
 
+void  Object::set_old_origin_f(pos_f origin)
+{
+    old_origin_f_ = origin;
+}
+
 float  Object::get_radius()
 {
     return (radius_);

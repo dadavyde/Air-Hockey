@@ -57,9 +57,9 @@ bool Puck::clash_pusher(Object *obj)
     if (distance1 - distance < 1 || distance1 < distance)//отбивается
     {
         direct.x += obj->get_direction().x;
-        direct.x *= 0.8;
+        direct.x *= 0.7;
         direct.y += obj->get_direction().y;
-        direct.y *= 0.8;
+        direct.y *= 0.7;
         music_.play_sound(KICK);
         return true;
     }
@@ -69,7 +69,7 @@ bool Puck::clash_pusher(Object *obj)
 bool Puck::hitting_gate()
 {
     if ((origin_f_.x - get_radius() > window_edge_.x + WIN_WIDTH / 2 - HALF_GATE) &&
-        (origin_f_.x + get_radius() < window_edge_.x + WIN_WIDTH / 2 + HALF_GATE))//ворота
+        (origin_f_.x + get_radius() < window_edge_.x + WIN_WIDTH / 2 + HALF_GATE))
     {
         origin_f_.x = 0;
         music_.play_sound(GOAL);

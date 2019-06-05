@@ -9,7 +9,7 @@ int main()
         game->run();
     }
     catch (SdlErr &e) {
-        std::cout << START_RED << "SDL error: " << SDL_GetError() << END_RED << std::endl;//TODO check
+        std::cout << START_RED << "SDL error: " << SDL_GetError() << END_RED << std::endl;
         return (1);
     }
     delete game;

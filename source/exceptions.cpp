@@ -2,7 +2,7 @@
 
 SdlErr::SdlErr()
 {
-    std::cout << START_RED << "SDL error: ";//TODO закрыть
+    std::cout << START_RED << "SDL error: ";
 }
 
 SdlErr::SdlErr(std::string &instr) : instr_(instr)
